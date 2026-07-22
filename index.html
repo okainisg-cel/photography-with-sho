@@ -188,21 +188,28 @@
   }
 
   section.gallery { padding: 64px 0 34px; }
-  section.gallery .section-title { text-align: center; margin-bottom: 6px; }
-  /* Portraits large, subtitle small */
-  section.gallery .section-title .en {
+  /* unified section headings: Portraits / Price / Get in touch */
+  section.gallery .section-title,
+  section.pricing .section-title { text-align: center; margin-bottom: 6px; }
+  section.gallery .section-title .en,
+  section.pricing .section-title .en,
+  footer.contact .en {
     font-family: "EB Garamond", serif;
     font-style: italic;
     font-size: clamp(40px, 8vw, 62px);
     font-weight: 500;
     letter-spacing: 0.03em;
-    color: var(--ink);
+    text-transform: none;
+    color: var(--rust);
     display: block;
     line-height: 1.1;
+    margin-bottom: 0;
   }
-  section.gallery .section-title .jp {
+  section.gallery .section-title .jp,
+  section.pricing .section-title .jp {
     display: block;
     font-size: 13px;
+    font-weight: 400;
     letter-spacing: 0.4em;
     color: var(--ink-soft);
     margin-top: 6px;
@@ -232,9 +239,10 @@
     display: flex;
     gap: 30px;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
     padding: 8px 4px 22px;
     -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    overscroll-behavior-x: contain;
     scrollbar-width: thin;
   }
   .hscroll::-webkit-scrollbar { height: 8px; }
@@ -242,7 +250,6 @@
 
   .frame {
     flex: 0 0 300px;
-    scroll-snap-align: center;
     background: var(--paper-deep);
     border: 1px solid var(--line);
     padding: 14px 14px 20px;
@@ -273,22 +280,8 @@
     padding: 56px 0 40px;
     border-top: 1px solid var(--line);
   }
-  section.pricing .section-title { text-align: center; margin-bottom: 6px; }
-  section.pricing .section-title .en {
-    font-family: "EB Garamond", serif;
-    font-style: italic;
-    font-size: 13px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--rust);
-    display: block;
-    margin-bottom: 8px;
-  }
-  section.pricing .section-title .jp { font-size: 24px; letter-spacing: 0.1em; }
-
   .plan {
     flex: 0 0 262px;
-    scroll-snap-align: center;
     background: var(--paper-deep);
     border: 1px solid var(--line);
     padding: 34px 26px 30px;
@@ -387,20 +380,12 @@
     border-top: 1px solid var(--line);
     text-align: center;
   }
-  footer.contact .en {
-    font-family: "EB Garamond", serif;
-    font-style: italic;
-    font-size: 13px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--rust);
-    display: block;
-    margin-bottom: 10px;
-  }
   footer.contact h2 {
-    font-size: 22px;
-    margin: 0 0 14px;
-    letter-spacing: 0.08em;
+    font-size: 17px;
+    font-weight: 400;
+    margin: 6px 0 14px;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
   }
   footer.contact .links {
     display: flex;
@@ -454,9 +439,6 @@
     <img src="profile.jpg" alt="Photography with sho" onerror="this.style.display='none'">
     <span class="ig-badge">◎</span>
   </a>
-  <a class="handle" href="https://www.instagram.com/photographywithsho/?hl=ja" target="_blank" rel="noopener">@photographywithsho</a>
-
-  <span class="eyebrow">Est. Kumamoto, Japan</span>
   <h1>Photography <span>with</span> sho</h1>
   <p class="ja-only">フィルムカメラのような、少し色褪せた懐かしさを纏う瞬間を切り取っています。日常の中にある、忘れがたい表情や光を。</p>
   <p class="en-only">Capturing moments wrapped in the faded, nostalgic warmth of film — the unforgettable expressions and light found in everyday life.</p>
@@ -527,9 +509,6 @@
       <span class="jp ja-only">料金プラン</span>
       <span class="jp en-only">Pricing</span>
     </div>
-    <p class="lede ja-only">シンプルな3プラン。撮影時間・納品枚数に合わせてお選びいただけます。</p>
-    <p class="lede en-only">Three simple plans — choose by shooting time and number of delivered photos.</p>
-
     <p class="swipe-hint">
       <span class="ja-only">← 左右にスワイプしてご覧ください →</span>
       <span class="en-only">← swipe to compare →</span>
@@ -619,9 +598,6 @@
       <span class="ja-only">メールで問い合わせる</span><span class="en-only">Email me</span>
     </a>
   </div>
-  <p class="note ja-only">@photographywithsho ／ 熊本を拠点に活動中</p>
-  <p class="note en-only">@photographywithsho ／ Based in Kumamoto, Japan</p>
-  <div class="brand">Photography with sho</div>
 </footer>
 
 <script async src="https://www.instagram.com/embed.js"></script>
