@@ -192,27 +192,27 @@
   /* section headings (original label style) */
   section.gallery .section-title,
   section.pricing .section-title { text-align: center; margin-bottom: 12px; }
+  section.gallery .section-title .jp,
+  section.pricing .section-title .jp {
+    font-family: "Zen Old Mincho", "Hiragino Mincho ProN", serif;
+    font-weight: 600;
+    font-size: 28px;
+    letter-spacing: 0.1em;
+    color: var(--ink);
+    display: block;
+    margin: 0 0 2px;
+  }
   section.gallery .section-title .en,
   section.pricing .section-title .en,
   footer.contact .en {
     font-family: "EB Garamond", serif;
     font-style: italic;
-    font-size: 30px;
-    letter-spacing: 0.05em;
-    text-transform: none;
-    color: var(--ink);
-    display: block;
-    margin-bottom: 0;
-  }
-  section.gallery .section-title .jp,
-  section.pricing .section-title .jp {
-    font-family: "Zen Old Mincho", "Hiragino Mincho ProN", serif;
-    font-weight: 600;
     font-size: 13px;
-    letter-spacing: 0.28em;
+    letter-spacing: 0.2em;
+    text-transform: none;
     color: var(--rust);
     display: block;
-    margin-bottom: 8px;
+    margin: 0;
   }
   section.gallery .lede,
   section.pricing .lede {
@@ -383,10 +383,10 @@
   footer.contact h2 {
     font-family: "Zen Old Mincho", "Hiragino Mincho ProN", serif;
     font-weight: 600;
-    font-size: 13px;
-    margin: 0 0 8px;
-    letter-spacing: 0.28em;
-    color: var(--rust);
+    font-size: 28px;
+    margin: 0 0 2px;
+    letter-spacing: 0.1em;
+    color: var(--ink);
   }
   footer.contact .links {
     display: flex;
