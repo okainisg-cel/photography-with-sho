@@ -155,10 +155,11 @@
   header.hero h1 {
     font-family: "EB Garamond", serif;
     font-weight: 500;
-    font-size: clamp(38px, 7vw, 64px);
+    font-size: clamp(24px, 6.6vw, 64px);
     letter-spacing: 0.04em;
     margin: 0 0 18px;
     color: var(--ink);
+    white-space: nowrap;
   }
   header.hero h1 span { font-style: italic; color: var(--rust); }
   header.hero p {
@@ -196,18 +197,22 @@
   footer.contact .en {
     font-family: "EB Garamond", serif;
     font-style: italic;
-    font-size: 13px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--rust);
+    font-size: 30px;
+    letter-spacing: 0.05em;
+    text-transform: none;
+    color: var(--ink);
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 0;
   }
   section.gallery .section-title .jp,
   section.pricing .section-title .jp {
-    font-size: 24px;
-    letter-spacing: 0.1em;
-    color: var(--ink);
+    font-family: "Zen Old Mincho", "Hiragino Mincho ProN", serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.28em;
+    color: var(--rust);
+    display: block;
+    margin-bottom: 8px;
   }
   section.gallery .lede,
   section.pricing .lede {
@@ -376,10 +381,12 @@
     text-align: center;
   }
   footer.contact h2 {
-    font-size: 22px;
-    margin: 0 0 14px;
-    letter-spacing: 0.08em;
-    color: var(--ink);
+    font-family: "Zen Old Mincho", "Hiragino Mincho ProN", serif;
+    font-weight: 600;
+    font-size: 13px;
+    margin: 0 0 8px;
+    letter-spacing: 0.28em;
+    color: var(--rust);
   }
   footer.contact .links {
     display: flex;
@@ -444,8 +451,8 @@
 <div class="wrap">
   <section class="gallery">
     <div class="section-title">
-      <span class="en">Portraits</span>
       <span class="jp">人物</span>
+      <span class="en">Portraits</span>
     </div>
     <p class="lede ja-only">誰かのふとした瞬間、視線、しぐさ。レトロなフィルムの質感で残す人物写真です。</p>
     <p class="lede en-only">A fleeting glance, a quiet gesture — portraits kept in the retro texture of film.</p>
@@ -497,8 +504,8 @@
 
   <section class="pricing">
     <div class="section-title">
-      <span class="en">Price</span>
       <span class="jp">料金プラン</span>
+      <span class="en">Price</span>
     </div>
     <p class="swipe-hint">
       <span class="ja-only">← 左右にスワイプしてご覧ください →</span>
@@ -575,9 +582,9 @@
 </div>
 
 <footer class="contact">
-  <span class="en">Get in touch</span>
   <h2 class="ja-only">ご予約・お問い合わせ</h2>
   <h2 class="en-only">Booking &amp; Contact</h2>
+  <span class="en">Get in touch</span>
   <p class="note ja-only" style="margin-bottom:22px;">ご予約・ご相談は下記からお気軽にどうぞ。日程やご希望をお聞かせください。英語でのご依頼も歓迎です。</p>
   <p class="note en-only" style="margin-bottom:22px;">For bookings and questions, reach out below. English inquiries are always welcome.</p>
   <div class="links">
