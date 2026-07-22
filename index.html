@@ -27,12 +27,16 @@
     line-height: 1.8;
   }
 
+  /* language visibility */
+  body.lang-ja .en-only { display: none; }
+  body.lang-en .ja-only { display: none; }
+
   /* film grain overlay */
   .grain {
     position: fixed;
     inset: 0;
     pointer-events: none;
-    z-index: 999;
+    z-index: 990;
     opacity: 0.35;
     mix-blend-mode: multiply;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
@@ -41,16 +45,102 @@
     position: fixed;
     inset: 0;
     pointer-events: none;
-    z-index: 998;
+    z-index: 989;
     box-shadow: inset 0 0 18vw rgba(35,25,15,0.28);
   }
+
+  /* language toggle (top-right) */
+  .lang-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 1000;
+    display: flex;
+    border: 1px solid var(--ink);
+    background: var(--paper);
+    box-shadow: 0 4px 14px -8px rgba(58,47,36,0.5);
+  }
+  .lang-toggle button {
+    border: none;
+    background: transparent;
+    padding: 7px 15px;
+    font-family: "EB Garamond", serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .lang-toggle button + button { border-left: 1px solid var(--line); }
+  .lang-toggle button.active { background: var(--ink); color: var(--paper); }
 
   .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
 
   header.hero {
     text-align: center;
-    padding: 90px 24px 60px;
+    padding: 76px 24px 58px;
     border-bottom: 1px solid var(--line);
+  }
+  /* profile avatar */
+  .hero .avatar {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: block;
+    margin: 0 auto 22px;
+    position: relative;
+    border: 1px solid var(--line);
+    box-shadow: 0 10px 26px -14px rgba(58,47,36,0.6);
+    background: var(--paper-deep);
+    text-decoration: none;
+  }
+  .hero .avatar::after {
+    content: "sho";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "EB Garamond", serif;
+    font-style: italic;
+    font-size: 52px;
+    color: var(--rust);
+  }
+  .hero .avatar img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(0.3) contrast(1.02) saturate(0.92);
+  }
+  .hero .avatar .ig-badge {
+    position: absolute;
+    z-index: 2;
+    right: 4px;
+    bottom: 4px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--rust);
+    color: var(--paper);
+    font-family: "EB Garamond", serif;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  }
+  .hero .handle {
+    display: block;
+    font-family: "EB Garamond", serif;
+    font-style: italic;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    text-decoration: none;
+    margin: -6px 0 20px;
   }
   header.hero .eyebrow {
     font-family: "EB Garamond", serif;
@@ -59,14 +149,14 @@
     text-transform: uppercase;
     font-size: 13px;
     color: var(--rust);
-    margin-bottom: 18px;
+    margin-bottom: 16px;
   }
   header.hero h1 {
     font-family: "EB Garamond", serif;
     font-weight: 500;
     font-size: clamp(38px, 7vw, 64px);
     letter-spacing: 0.04em;
-    margin: 0 0 20px;
+    margin: 0 0 18px;
     color: var(--ink);
   }
   header.hero h1 span { font-style: italic; color: var(--rust); }
@@ -76,8 +166,19 @@
     color: var(--ink-soft);
     font-size: 15.5px;
   }
+  .en-badge {
+    display: inline-block;
+    margin-top: 24px;
+    font-family: "EB Garamond", serif;
+    font-size: 12.5px;
+    letter-spacing: 0.12em;
+    color: var(--rust);
+    border: 1px solid var(--rust);
+    border-radius: 999px;
+    padding: 6px 18px;
+  }
   header.hero .location {
-    margin-top: 26px;
+    margin-top: 18px;
     font-family: "EB Garamond", serif;
     font-size: 12px;
     letter-spacing: 0.18em;
@@ -85,39 +186,62 @@
     color: var(--ink-soft);
   }
 
-  section.gallery { padding: 70px 0 40px; }
-  section.gallery .section-title {
-    text-align: center;
-    margin-bottom: 12px;
-  }
+  section.gallery { padding: 64px 0 34px; }
+  section.gallery .section-title { text-align: center; margin-bottom: 6px; }
+  /* Portraits large, subtitle small */
   section.gallery .section-title .en {
     font-family: "EB Garamond", serif;
     font-style: italic;
-    font-size: 13px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--rust);
+    font-size: clamp(40px, 8vw, 62px);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--ink);
     display: block;
-    margin-bottom: 8px;
+    line-height: 1.1;
   }
   section.gallery .section-title .jp {
-    font-size: 24px;
-    letter-spacing: 0.1em;
+    display: block;
+    font-size: 13px;
+    letter-spacing: 0.4em;
+    color: var(--ink-soft);
+    margin-top: 6px;
   }
-  section.gallery .lede {
+  section.gallery .lede,
+  section.pricing .lede {
     text-align: center;
     max-width: 480px;
-    margin: 0 auto 50px;
+    margin: 14px auto 26px;
     color: var(--ink-soft);
     font-size: 14.5px;
   }
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 34px;
+  /* horizontal swipe hint */
+  .swipe-hint {
+    text-align: center;
+    font-family: "EB Garamond", serif;
+    font-style: italic;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
   }
+
+  /* horizontal scroll rows */
+  .hscroll {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 8px 4px 22px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+  .hscroll::-webkit-scrollbar { height: 8px; }
+  .hscroll::-webkit-scrollbar-thumb { background: var(--line); border-radius: 8px; }
+
   .frame {
+    flex: 0 0 300px;
+    scroll-snap-align: center;
     background: var(--paper-deep);
     border: 1px solid var(--line);
     padding: 14px 14px 20px;
@@ -145,10 +269,10 @@
 
   /* pricing */
   section.pricing {
-    padding: 60px 0 40px;
+    padding: 56px 0 40px;
     border-top: 1px solid var(--line);
   }
-  section.pricing .section-title { text-align: center; margin-bottom: 12px; }
+  section.pricing .section-title { text-align: center; margin-bottom: 6px; }
   section.pricing .section-title .en {
     font-family: "EB Garamond", serif;
     font-style: italic;
@@ -160,20 +284,10 @@
     margin-bottom: 8px;
   }
   section.pricing .section-title .jp { font-size: 24px; letter-spacing: 0.1em; }
-  section.pricing .lede {
-    text-align: center;
-    max-width: 480px;
-    margin: 0 auto 50px;
-    color: var(--ink-soft);
-    font-size: 14.5px;
-  }
-  .plans {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 24px;
-    align-items: stretch;
-  }
+
   .plan {
+    flex: 0 0 262px;
+    scroll-snap-align: center;
     background: var(--paper-deep);
     border: 1px solid var(--line);
     padding: 34px 26px 30px;
@@ -218,11 +332,6 @@
     letter-spacing: 0.02em;
     margin-bottom: 4px;
   }
-  .plan .price small {
-    font-size: 15px;
-    color: var(--ink-soft);
-    letter-spacing: 0;
-  }
   .plan .price-note {
     font-family: "EB Garamond", serif;
     font-size: 12px;
@@ -266,14 +375,14 @@
   .plan.featured .plan-btn:hover { background: var(--ink); border-color: var(--ink); }
   .pricing-note {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 24px;
     font-size: 12.5px;
     color: var(--ink-soft);
   }
 
   footer.contact {
-    margin-top: 50px;
-    padding: 70px 24px 90px;
+    margin-top: 46px;
+    padding: 66px 24px 90px;
     border-top: 1px solid var(--line);
     text-align: center;
   }
@@ -289,7 +398,7 @@
   }
   footer.contact h2 {
     font-size: 22px;
-    margin: 0 0 22px;
+    margin: 0 0 14px;
     letter-spacing: 0.08em;
   }
   footer.contact .links {
@@ -329,15 +438,30 @@
   }
 </style>
 </head>
-<body>
+<body class="lang-ja">
 
 <div class="grain"></div>
 <div class="vignette"></div>
 
+<div class="lang-toggle" role="group" aria-label="Language">
+  <button data-l="ja" class="active" onclick="setLang('ja')">JP</button>
+  <button data-l="en" onclick="setLang('en')">EN</button>
+</div>
+
 <header class="hero">
+  <a class="avatar" href="https://www.instagram.com/photographywithsho/?hl=ja" target="_blank" rel="noopener" aria-label="Instagram @photographywithsho">
+    <img src="profile.jpg" alt="Photography with sho" onerror="this.style.display='none'">
+    <span class="ig-badge">◎</span>
+  </a>
+  <a class="handle" href="https://www.instagram.com/photographywithsho/?hl=ja" target="_blank" rel="noopener">@photographywithsho</a>
+
   <span class="eyebrow">Est. Kumamoto, Japan</span>
   <h1>Photography <span>with</span> sho</h1>
-  <p>フィルムカメラのような、少し色褪せた懐かしさを纏う瞬間を切り取っています。日常の中にある、忘れがたい表情や光を。</p>
+  <p class="ja-only">フィルムカメラのような、少し色褪せた懐かしさを纏う瞬間を切り取っています。日常の中にある、忘れがたい表情や光を。</p>
+  <p class="en-only">Capturing moments wrapped in the faded, nostalgic warmth of film — the unforgettable expressions and light found in everyday life.</p>
+  <div>
+    <span class="en-badge">English OK ・ 英語対応可 — Sessions available in English</span>
+  </div>
   <div class="location">Kumamoto — Weekend Photographer</div>
 </header>
 
@@ -345,11 +469,18 @@
   <section class="gallery">
     <div class="section-title">
       <span class="en">Portraits</span>
-      <span class="jp">人物</span>
+      <span class="jp ja-only">人物</span>
+      <span class="jp en-only">People</span>
     </div>
-    <p class="lede">誰かのふとした瞬間、視線、しぐさ。レトロなフィルムの質感で残す人物写真です。</p>
+    <p class="lede ja-only">誰かのふとした瞬間、視線、しぐさ。レトロなフィルムの質感で残す人物写真です。</p>
+    <p class="lede en-only">A fleeting glance, a quiet gesture — portraits kept in the retro texture of film.</p>
 
-    <div class="grid">
+    <p class="swipe-hint">
+      <span class="ja-only">← 左右にスワイプしてご覧ください →</span>
+      <span class="en-only">← swipe to browse →</span>
+    </p>
+
+    <div class="hscroll">
 
       <div class="frame">
         <div class="embed-holder">
@@ -392,67 +523,116 @@
   <section class="pricing">
     <div class="section-title">
       <span class="en">Price</span>
-      <span class="jp">料金プラン</span>
+      <span class="jp ja-only">料金プラン</span>
+      <span class="jp en-only">Pricing</span>
     </div>
-    <p class="lede">シンプルな3プラン。撮影時間・納品枚数に合わせてお選びいただけます。</p>
+    <p class="lede ja-only">シンプルな3プラン。撮影時間・納品枚数に合わせてお選びいただけます。</p>
+    <p class="lede en-only">Three simple plans — choose by shooting time and number of delivered photos.</p>
 
-    <div class="plans">
+    <p class="swipe-hint">
+      <span class="ja-only">← 左右にスワイプしてご覧ください →</span>
+      <span class="en-only">← swipe to compare →</span>
+    </p>
+
+    <div class="hscroll">
 
       <div class="plan">
         <div class="name">Light</div>
-        <div class="price">¥3,000<small></small></div>
-        <div class="price-note">ライトプラン</div>
-        <ul>
+        <div class="price">¥3,000</div>
+        <div class="price-note ja-only">ライトプラン</div>
+        <div class="price-note en-only">Light plan</div>
+        <ul class="ja-only">
           <li>撮影 30分</li>
           <li>納品 5枚（レタッチ込み）</li>
           <li>1ロケーション</li>
         </ul>
-        <a class="plan-btn" href="https://ig.me/m/photographywithsho" target="_blank" rel="noopener">このプランで予約</a>
+        <ul class="en-only">
+          <li>30 min shooting</li>
+          <li>5 edited photos</li>
+          <li>1 location</li>
+        </ul>
+        <a class="plan-btn" href="https://ig.me/m/photographywithsho" target="_blank" rel="noopener">
+          <span class="ja-only">このプランで予約</span><span class="en-only">Book this plan</span>
+        </a>
       </div>
 
       <div class="plan featured">
         <div class="tag">Popular</div>
         <div class="name">Standard</div>
-        <div class="price">¥5,000<small></small></div>
-        <div class="price-note">スタンダードプラン</div>
-        <ul>
+        <div class="price">¥5,000</div>
+        <div class="price-note ja-only">スタンダードプラン</div>
+        <div class="price-note en-only">Standard plan</div>
+        <ul class="ja-only">
           <li>撮影 60分</li>
           <li>納品 15枚（レタッチ込み）</li>
           <li>1〜2ロケーション</li>
         </ul>
-        <a class="plan-btn" href="https://ig.me/m/photographywithsho" target="_blank" rel="noopener">このプランで予約</a>
+        <ul class="en-only">
+          <li>60 min shooting</li>
+          <li>15 edited photos</li>
+          <li>1–2 locations</li>
+        </ul>
+        <a class="plan-btn" href="https://ig.me/m/photographywithsho" target="_blank" rel="noopener">
+          <span class="ja-only">このプランで予約</span><span class="en-only">Book this plan</span>
+        </a>
       </div>
 
       <div class="plan">
         <div class="name">Premium</div>
-        <div class="price">¥10,000<small></small></div>
-        <div class="price-note">プレミアムプラン</div>
-        <ul>
+        <div class="price">¥10,000</div>
+        <div class="price-note ja-only">プレミアムプラン</div>
+        <div class="price-note en-only">Premium plan</div>
+        <ul class="ja-only">
           <li>撮影 90分</li>
           <li>納品 30枚（レタッチ込み）</li>
           <li>複数ロケーション対応</li>
         </ul>
-        <a class="plan-btn" href="https://ig.me/m/photographywithsho" target="_blank" rel="noopener">このプランで予約</a>
+        <ul class="en-only">
+          <li>90 min shooting</li>
+          <li>30 edited photos</li>
+          <li>Multiple locations</li>
+        </ul>
+        <a class="plan-btn" href="https://ig.me/m/photographywithsho" target="_blank" rel="noopener">
+          <span class="ja-only">このプランで予約</span><span class="en-only">Book this plan</span>
+        </a>
       </div>
 
     </div>
-    <p class="pricing-note">※出張エリア外は交通費を別途申し受ける場合があります。まずはお気軽にご相談ください。</p>
+    <p class="pricing-note ja-only">※出張エリア外は交通費を別途申し受ける場合があります。まずはお気軽にご相談ください。</p>
+    <p class="pricing-note en-only">*Travel fees may apply outside the main area. Feel free to reach out first.</p>
   </section>
 </div>
 
 <footer class="contact">
   <span class="en">Get in touch</span>
-  <h2>ご予約・お問い合わせ</h2>
-  <p class="note" style="margin-bottom:22px;">ご予約・ご相談は下記からお気軽にどうぞ。日程やご希望をお聞かせください。</p>
+  <h2 class="ja-only">ご予約・お問い合わせ</h2>
+  <h2 class="en-only">Booking &amp; Contact</h2>
+  <p class="note ja-only" style="margin-bottom:22px;">ご予約・ご相談は下記からお気軽にどうぞ。日程やご希望をお聞かせください。英語でのご依頼も歓迎です。</p>
+  <p class="note en-only" style="margin-bottom:22px;">For bookings and questions, reach out below. English inquiries are always welcome.</p>
   <div class="links">
     <a class="btn" href="https://www.instagram.com/photographywithsho/?hl=ja" target="_blank" rel="noopener">Instagram</a>
-    <a class="btn" href="https://ig.me/m/photographywithsho" target="_blank" rel="noopener">DMで予約・相談する</a>
-    <a class="btn" href="mailto:oka.in.isg@gmail.com?subject=撮影のご依頼・お問い合わせ">メールで問い合わせる</a>
+    <a class="btn" href="https://ig.me/m/photographywithsho" target="_blank" rel="noopener">
+      <span class="ja-only">DMで予約・相談する</span><span class="en-only">Message me on DM</span>
+    </a>
+    <a class="btn" href="mailto:oka.in.isg@gmail.com?subject=撮影のご依頼・お問い合わせ">
+      <span class="ja-only">メールで問い合わせる</span><span class="en-only">Email me</span>
+    </a>
   </div>
-  <p class="note">@photographywithsho ／ 熊本を拠点に活動中</p>
+  <p class="note ja-only">@photographywithsho ／ 熊本を拠点に活動中</p>
+  <p class="note en-only">@photographywithsho ／ Based in Kumamoto, Japan</p>
   <div class="brand">Photography with sho</div>
 </footer>
 
 <script async src="https://www.instagram.com/embed.js"></script>
+<script>
+  function setLang(l){
+    document.body.classList.remove('lang-ja','lang-en');
+    document.body.classList.add('lang-' + l);
+    document.documentElement.lang = l;
+    document.querySelectorAll('.lang-toggle button').forEach(function(b){
+      b.classList.toggle('active', b.dataset.l === l);
+    });
+  }
+</script>
 </body>
 </html>
