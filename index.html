@@ -28,8 +28,12 @@
   }
 
   /* language visibility */
-  body.lang-ja .en-only { display: none; }
-  body.lang-en .ja-only { display: none; }
+  body.lang-ja .en-only,
+  body.lang-ja .zh-only { display: none; }
+  body.lang-en .ja-only,
+  body.lang-en .zh-only { display: none; }
+  body.lang-zh .ja-only,
+  body.lang-zh .en-only { display: none; }
 
   /* film grain overlay */
   .grain {
@@ -174,10 +178,12 @@
     font-family: "EB Garamond", serif;
     font-size: 12.5px;
     letter-spacing: 0.12em;
+    line-height: 1.6;
+    text-align: center;
     color: var(--rust);
     border: 1px solid var(--rust);
-    border-radius: 999px;
-    padding: 6px 18px;
+    border-radius: 18px;
+    padding: 8px 20px;
   }
   header.hero .location {
     margin-top: 18px;
@@ -433,6 +439,7 @@
 <div class="lang-toggle" role="group" aria-label="Language">
   <button data-l="ja" class="active" onclick="setLang('ja')">JP</button>
   <button data-l="en" onclick="setLang('en')">EN</button>
+  <button data-l="zh" onclick="setLang('zh')">繁</button>
 </div>
 
 <header class="hero">
@@ -443,8 +450,9 @@
   <h1>Photography <span>with</span> sho</h1>
   <p class="ja-only">フィルムカメラのような、少し色褪せた懐かしさを纏う瞬間を切り取っています。日常の中にある、忘れがたい表情や光を。</p>
   <p class="en-only">Capturing moments wrapped in the faded, nostalgic warmth of film — the unforgettable expressions and light found in everyday life.</p>
+  <p class="zh-only">以底片般略帶褪色的懷舊感，捕捉每一個瞬間。留住日常中那些難忘的表情與光影。</p>
   <div>
-    <span class="en-badge">English OK ・ 英語対応可 — Sessions available in English</span>
+    <span class="en-badge">English OK ・ 英語対応可<br>Sessions available in English</span>
   </div>
 </header>
 
@@ -456,10 +464,12 @@
     </div>
     <p class="lede ja-only">誰かのふとした瞬間、視線、しぐさ。レトロなフィルムの質感で残す人物写真です。</p>
     <p class="lede en-only">A fleeting glance, a quiet gesture — portraits kept in the retro texture of film.</p>
+    <p class="lede zh-only">某個不經意的瞬間、眼神與姿態。以復古底片質感留下的人物寫真。</p>
 
     <p class="swipe-hint">
       <span class="ja-only">← 左右にスワイプしてご覧ください →</span>
       <span class="en-only">← swipe to browse →</span>
+      <span class="zh-only">← 左右滑動瀏覽 →</span>
     </p>
 
     <div class="hscroll">
@@ -510,6 +520,7 @@
     <p class="swipe-hint">
       <span class="ja-only">← 左右にスワイプしてご覧ください →</span>
       <span class="en-only">← swipe to compare →</span>
+      <span class="zh-only">← 左右滑動比較 →</span>
     </p>
 
     <div class="hscroll">
@@ -519,6 +530,7 @@
         <div class="price">¥3,000</div>
         <div class="price-note ja-only">ライトプラン</div>
         <div class="price-note en-only">Light plan</div>
+        <div class="price-note zh-only">輕量方案</div>
         <ul class="ja-only">
           <li>撮影 30分</li>
           <li>納品 5枚（レタッチ込み）</li>
@@ -529,8 +541,13 @@
           <li>5 edited photos</li>
           <li>1 location</li>
         </ul>
+        <ul class="zh-only">
+          <li>拍攝 30 分鐘</li>
+          <li>交付 5 張（含修圖）</li>
+          <li>1 個場景</li>
+        </ul>
         <a class="plan-btn" href="https://ig.me/m/photographywithsho" target="_blank" rel="noopener">
-          <span class="ja-only">このプランで予約</span><span class="en-only">Book this plan</span>
+          <span class="ja-only">このプランで予約</span><span class="en-only">Book this plan</span><span class="zh-only">預約此方案</span>
         </a>
       </div>
 
@@ -540,6 +557,7 @@
         <div class="price">¥5,000</div>
         <div class="price-note ja-only">スタンダードプラン</div>
         <div class="price-note en-only">Standard plan</div>
+        <div class="price-note zh-only">標準方案</div>
         <ul class="ja-only">
           <li>撮影 60分</li>
           <li>納品 15枚（レタッチ込み）</li>
@@ -550,8 +568,13 @@
           <li>15 edited photos</li>
           <li>1–2 locations</li>
         </ul>
+        <ul class="zh-only">
+          <li>拍攝 60 分鐘</li>
+          <li>交付 15 張（含修圖）</li>
+          <li>1〜2 個場景</li>
+        </ul>
         <a class="plan-btn" href="https://ig.me/m/photographywithsho" target="_blank" rel="noopener">
-          <span class="ja-only">このプランで予約</span><span class="en-only">Book this plan</span>
+          <span class="ja-only">このプランで予約</span><span class="en-only">Book this plan</span><span class="zh-only">預約此方案</span>
         </a>
       </div>
 
@@ -560,6 +583,7 @@
         <div class="price">¥10,000</div>
         <div class="price-note ja-only">プレミアムプラン</div>
         <div class="price-note en-only">Premium plan</div>
+        <div class="price-note zh-only">高級方案</div>
         <ul class="ja-only">
           <li>撮影 90分</li>
           <li>納品 30枚（レタッチ込み）</li>
@@ -570,30 +594,38 @@
           <li>30 edited photos</li>
           <li>Multiple locations</li>
         </ul>
+        <ul class="zh-only">
+          <li>拍攝 90 分鐘</li>
+          <li>交付 30 張（含修圖）</li>
+          <li>可多個場景</li>
+        </ul>
         <a class="plan-btn" href="https://ig.me/m/photographywithsho" target="_blank" rel="noopener">
-          <span class="ja-only">このプランで予約</span><span class="en-only">Book this plan</span>
+          <span class="ja-only">このプランで予約</span><span class="en-only">Book this plan</span><span class="zh-only">預約此方案</span>
         </a>
       </div>
 
     </div>
     <p class="pricing-note ja-only">※出張エリア外は交通費を別途申し受ける場合があります。まずはお気軽にご相談ください。</p>
     <p class="pricing-note en-only">*Travel fees may apply outside the main area. Feel free to reach out first.</p>
+    <p class="pricing-note zh-only">※主要區域以外可能另收交通費。歡迎先與我聯絡諮詢。</p>
   </section>
 </div>
 
 <footer class="contact">
   <h2 class="ja-only">ご予約・お問い合わせ</h2>
   <h2 class="en-only">Booking &amp; Contact</h2>
+  <h2 class="zh-only">預約・洽詢</h2>
   <span class="en">Get in touch</span>
   <p class="note ja-only" style="margin-bottom:22px;">ご予約・ご相談は下記からお気軽にどうぞ。日程やご希望をお聞かせください。英語でのご依頼も歓迎です。</p>
   <p class="note en-only" style="margin-bottom:22px;">For bookings and questions, reach out below. English inquiries are always welcome.</p>
+  <p class="note zh-only" style="margin-bottom:22px;">預約與諮詢請透過以下方式聯絡。歡迎告知日期與需求，亦可用英語洽詢。</p>
   <div class="links">
     <a class="btn" href="https://www.instagram.com/photographywithsho/?hl=ja" target="_blank" rel="noopener">Instagram</a>
     <a class="btn" href="https://ig.me/m/photographywithsho" target="_blank" rel="noopener">
-      <span class="ja-only">DMで予約・相談する</span><span class="en-only">Message me on DM</span>
+      <span class="ja-only">DMで予約・相談する</span><span class="en-only">Message me on DM</span><span class="zh-only">透過 DM 預約諮詢</span>
     </a>
     <a class="btn" href="mailto:oka.in.isg@gmail.com?subject=撮影のご依頼・お問い合わせ">
-      <span class="ja-only">メールで問い合わせる</span><span class="en-only">Email me</span>
+      <span class="ja-only">メールで問い合わせる</span><span class="en-only">Email me</span><span class="zh-only">以電子郵件洽詢</span>
     </a>
   </div>
 </footer>
