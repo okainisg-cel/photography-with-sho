@@ -143,6 +143,134 @@
     color: var(--ink-soft);
   }
 
+  /* pricing */
+  section.pricing {
+    padding: 60px 0 40px;
+    border-top: 1px solid var(--line);
+  }
+  section.pricing .section-title { text-align: center; margin-bottom: 12px; }
+  section.pricing .section-title .en {
+    font-family: "EB Garamond", serif;
+    font-style: italic;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--rust);
+    display: block;
+    margin-bottom: 8px;
+  }
+  section.pricing .section-title .jp { font-size: 24px; letter-spacing: 0.1em; }
+  section.pricing .lede {
+    text-align: center;
+    max-width: 480px;
+    margin: 0 auto 50px;
+    color: var(--ink-soft);
+    font-size: 14.5px;
+  }
+  .plans {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    align-items: stretch;
+  }
+  .plan {
+    background: var(--paper-deep);
+    border: 1px solid var(--line);
+    padding: 34px 26px 30px;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .plan::before {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(58,47,36,0.15);
+    pointer-events: none;
+  }
+  .plan.featured { border-color: var(--rust); }
+  .plan .tag {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--rust);
+    color: var(--paper);
+    font-family: "EB Garamond", serif;
+    font-style: italic;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+  }
+  .plan .name {
+    font-family: "EB Garamond", serif;
+    font-style: italic;
+    font-size: 15px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 14px;
+  }
+  .plan .price {
+    font-size: 34px;
+    letter-spacing: 0.02em;
+    margin-bottom: 4px;
+  }
+  .plan .price small {
+    font-size: 15px;
+    color: var(--ink-soft);
+    letter-spacing: 0;
+  }
+  .plan .price-note {
+    font-family: "EB Garamond", serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+  }
+  .plan ul {
+    list-style: none;
+    margin: 0 0 26px;
+    padding: 0;
+    text-align: left;
+  }
+  .plan ul li {
+    font-size: 14px;
+    color: var(--ink-soft);
+    padding: 8px 0 8px 22px;
+    position: relative;
+    border-bottom: 1px dashed rgba(201,185,154,0.6);
+  }
+  .plan ul li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--rust);
+  }
+  .plan .plan-btn {
+    margin-top: auto;
+    display: inline-block;
+    font-family: "EB Garamond", serif;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    text-decoration: none;
+    border: 1px solid var(--ink);
+    padding: 11px 20px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .plan .plan-btn:hover { background: var(--ink); color: var(--paper); }
+  .plan.featured .plan-btn { background: var(--rust); border-color: var(--rust); color: var(--paper); }
+  .plan.featured .plan-btn:hover { background: var(--ink); border-color: var(--ink); }
+  .pricing-note {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+
   footer.contact {
     margin-top: 50px;
     padding: 70px 24px 90px;
@@ -260,14 +388,66 @@
 
     </div>
   </section>
+
+  <section class="pricing">
+    <div class="section-title">
+      <span class="en">Price</span>
+      <span class="jp">料金プラン</span>
+    </div>
+    <p class="lede">シンプルな3プラン。撮影時間・納品枚数に合わせてお選びいただけます。</p>
+
+    <div class="plans">
+
+      <div class="plan">
+        <div class="name">Light</div>
+        <div class="price">¥3,000<small></small></div>
+        <div class="price-note">ライトプラン</div>
+        <ul>
+          <li>撮影 30分</li>
+          <li>納品 5枚（レタッチ込み）</li>
+          <li>1ロケーション</li>
+        </ul>
+        <a class="plan-btn" href="https://ig.me/m/photographywithsho" target="_blank" rel="noopener">このプランで予約</a>
+      </div>
+
+      <div class="plan featured">
+        <div class="tag">Popular</div>
+        <div class="name">Standard</div>
+        <div class="price">¥5,000<small></small></div>
+        <div class="price-note">スタンダードプラン</div>
+        <ul>
+          <li>撮影 60分</li>
+          <li>納品 15枚（レタッチ込み）</li>
+          <li>1〜2ロケーション</li>
+        </ul>
+        <a class="plan-btn" href="https://ig.me/m/photographywithsho" target="_blank" rel="noopener">このプランで予約</a>
+      </div>
+
+      <div class="plan">
+        <div class="name">Premium</div>
+        <div class="price">¥10,000<small></small></div>
+        <div class="price-note">プレミアムプラン</div>
+        <ul>
+          <li>撮影 90分</li>
+          <li>納品 30枚（レタッチ込み）</li>
+          <li>複数ロケーション対応</li>
+        </ul>
+        <a class="plan-btn" href="https://ig.me/m/photographywithsho" target="_blank" rel="noopener">このプランで予約</a>
+      </div>
+
+    </div>
+    <p class="pricing-note">※出張エリア外は交通費を別途申し受ける場合があります。まずはお気軽にご相談ください。</p>
+  </section>
 </div>
 
 <footer class="contact">
   <span class="en">Get in touch</span>
-  <h2>撮影のご依頼・お問い合わせ</h2>
+  <h2>ご予約・お問い合わせ</h2>
+  <p class="note" style="margin-bottom:22px;">ご予約・ご相談は下記からお気軽にどうぞ。日程やご希望をお聞かせください。</p>
   <div class="links">
-    <a class="btn" href="https://www.instagram.com/photographywithsho/?hl=ja" target="_blank" rel="noopener">Instagram DMで相談する</a>
-    <a class="btn" href="mailto:oka.in.isg@gmail.com">oka.in.isg@gmail.com</a>
+    <a class="btn" href="https://www.instagram.com/photographywithsho/?hl=ja" target="_blank" rel="noopener">Instagram</a>
+    <a class="btn" href="https://ig.me/m/photographywithsho" target="_blank" rel="noopener">DMで予約・相談する</a>
+    <a class="btn" href="mailto:oka.in.isg@gmail.com?subject=撮影のご依頼・お問い合わせ">メールで問い合わせる</a>
   </div>
   <p class="note">@photographywithsho ／ 熊本を拠点に活動中</p>
   <div class="brand">Photography with sho</div>
